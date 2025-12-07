@@ -15,10 +15,9 @@ router.post('/delete-event/:id', controller.delete_event);
 router.post('/update-event/:id', controller.update_event);
 router.post('/get-event/:id', controller.get_event_by_id);
 
+const path = require('path');
 router.use((req, res) => {
-    res.status(404);
-    res.type('text/plain');
-    res.send('404 Not found');
+    res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
 });
 
 module.exports = router;

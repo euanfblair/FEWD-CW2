@@ -1,4 +1,15 @@
 {
+  "name": "fewd-coursework",
+  "version": "1.0.0",
+  "description": "Family Organiser Application",
+  "scripts": {
+    "start": "cd server && npm start",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",

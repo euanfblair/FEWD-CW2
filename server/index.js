@@ -48,6 +48,9 @@ const router = require('./routes/foRoutes')
 const public = path.join(__dirname, 'public');
 app.use(express.static(public));
 
+const clientBuild = path.join(__dirname, '../client/dist');
+app.use(express.static(clientBuild));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const cookieParser = require('cookie-parser')
@@ -61,6 +64,7 @@ app.use((req, res, next) => {
 
 app.use('/', router);
 
-server.listen(3002, () => {
-    console.log('Server started on port 3002. Ctrl^c to quit.')
+const PORT = process.env.PORT || 3002;
+server.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}. Ctrl^c to quit.`)
 })
