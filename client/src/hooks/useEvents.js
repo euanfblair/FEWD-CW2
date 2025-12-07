@@ -26,7 +26,7 @@ export const useEvents = () => {
 
     fetchEvents();
 
-    const socket = io(import.meta.env.VITE_API_URL || '/');
+    const socket = io(import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3002' : '/'));
 
     socket.emit('join_family', user.familyId);
 
