@@ -129,14 +129,16 @@ exports.post_new_event = (req, res) => {
         req.body.requiredItems,
         req.body.username,
         req.body.userfamily
-    );
-
-    if (req.io) {
-        const familyRoom = 'family_' + req.body.userfamily;
-        req.io.to(familyRoom).emit('refresh_events');
-    }
-
-    res.json({ success: true, msg: "event added" });
+    ).then(() => {
+        if (req.io) {
+            const familyRoom = 'family_' + req.body.userfamily;
+            req.io.to(familyRoom).emit('refresh_events');
+        }
+        res.json({ success: true, msg: "event added" });
+    }).catch((err) => {
+        console.error("Error adding event:", err);
+        res.status(500).json({ success: false, msg: "Failed to add event" });
+    });
 }
 
 

@@ -33,24 +33,28 @@ class FamilyOrganiser {
     }
 
     addEvent(event, date = null, startTime, endTime, location, requiredItems, username, familyId) {
-        let newEvent = {
-            event: event,
-            date: date || new Date().toISOString().split('T')[0],
-            startTime: startTime,
-            endTime: endTime,
-            location: location,
-            requiredItems: requiredItems,
-            organiser: username,
-            familyId: familyId
-        }
-        console.log('Event created', newEvent);
-
-        this.db.insert(newEvent, (err, doc) => {
-            if (err) {
-                console.log('Error inserting document', event);
-            } else {
-                console.log('document inserted into the database', doc);
+        return new Promise((resolve, reject) => {
+            let newEvent = {
+                event: event,
+                date: date || new Date().toISOString().split('T')[0],
+                startTime: startTime,
+                endTime: endTime,
+                location: location,
+                requiredItems: requiredItems,
+                organiser: username,
+                familyId: familyId
             }
+            console.log('Event created', newEvent);
+
+            this.db.insert(newEvent, (err, doc) => {
+                if (err) {
+                    console.log('Error inserting document', event);
+                    reject(err);
+                } else {
+                    console.log('document inserted into the database', doc);
+                    resolve(doc);
+                }
+            });
         });
     }
 
