@@ -1,7 +1,8 @@
 const familyorganiserDAO = require('../models/foModel');
 const userDAO = require('../models/userModel.js');
 const utils = require("../lib/utils");
-const db = new familyorganiserDAO("./data/events.db");
+const path = require('path');
+const db = new familyorganiserDAO(path.join(__dirname, '../data/events.db'));
 db.init();
 
 exports.json_events_endpoint = (req, res) => {

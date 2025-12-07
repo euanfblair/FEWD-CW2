@@ -9,6 +9,13 @@ const { Server } = require("socket.io");
 require('./config/passport')(passport);
 require('dotenv').config()
 
+const fs = require('fs');
+
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir);
+}
+
 const app = express();
 
 const server = http.createServer(app);

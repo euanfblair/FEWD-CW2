@@ -154,6 +154,7 @@ class userDAO {
 
 }
 
-const dao = new userDAO("./data/users.db");
+const path = require('path');
+const dao = new userDAO(path.join(__dirname, '../data/users.db'));
 dao.init();
 module.exports = dao;
