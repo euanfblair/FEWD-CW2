@@ -99,7 +99,6 @@ const Dashboard = () => {
           )}
         </div>
 
-        {/* Search and Filter Section */}
         <div className="bg-white p-4 rounded-lg shadow-sm mb-6 border border-gray-200">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="col-span-1 md:col-span-4">
